@@ -1,0 +1,35 @@
+/* Write your CSS here */
+.cart-summary-container {
+  align-self: flex-end;
+  width: 50%;
+}
+.total-amount {
+  color: #616e7c;
+  font-size: 1rem;
+}
+.total-amount span {
+  color: #171f46;
+  font-size: 1.1rem;
+}
+.cart-summary-container p {
+  color: #616e7c;
+  font-size: 0.8rem;
+}
+.checkout-btn {
+  background-color: #0b69ff;
+  color: #fff;
+  border: 0px;
+  width: 100%;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+@media screen and (min-width: 768px) {
+  .checkout-btn {
+    width: 30%;
+    align-self: flex-end;
+  }
+  .cart-summary-container {
+    width: 30%;
+  }
+}
