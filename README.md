@@ -1,183 +1,84 @@
-In this project, let's build a **Nxt Trendz - Cart Features** by applying the concepts we have learned till now.
+# Nxt Trendz 
 
-### Refer to the video below:
+Nxt Trendz is a feature-rich e-commerce web application that simulates an online shopping experience. This project demonstrates key e-commerce functionalities such as user authentication, product filtering, and cart management, all developed with React and Context API for an interactive user experience.
 
-<br/>
-<div style="text-align: center;">
-  <video style="max-width:70%;box-shadow:0 2.8px 2.2px rgba(0, 0, 0, 0.12);outline:none;" loop="true" autoplay="autoplay" controls="controls" muted>
-    <source src="https://assets.ccbp.in/frontend/content/react-js/nxt-trendz-cart-features-output.mp4" type="video/mp4">
-  </video>
-</div>
-<br/>
+## Live Demo
+[Access Nxt Trendz](https://nxttrends12.ccbp.tech/login)
 
-### Design Files
+- **Username**: `rahul`
+- **Password**: `rahul@2021`
 
-<details>
-<summary>Click to view</summary>
+## Key Features and Functionalities
 
-- [Extra Small (Size < 576px) and Small (Size >= 576px)](https://assets.ccbp.in/frontend/content/react-js/nxt-trendz-cart-features-sm-output-v0.png)
-- [Medium (Size >= 768px), Large (Size >= 992px) and Extra Large (Size >= 1200px)](https://assets.ccbp.in/frontend/content/react-js/nxt-trendz-cart-features-lg-output.png)
+### 1. Authentication and Navigation
 
-</details>
+- **Login & Error Handling**: Provides error messages for incorrect login credentials. On successful login, the user is redirected to the Home page.
 
-### Set Up Instructions
+  ![Login Page](https://res.cloudinary.com/doov17zaw/image/upload/v1730109320/nxt%20Trends/Web_capture_28-10-2024_151852_nxttrends12.ccbp.tech_siqloh.jpg)
 
-<details>
-<summary>Click to view</summary>
+- **Protected Routes**:
+  - Redirects unauthenticated users attempting to access the Home, Products, or Cart routes to the Login page.
+  - Authenticated users have access to Home, Products, Cart, and Product Item Details routes. Attempts to access the Login page while authenticated redirect users to the Home route.
+- **Logout Functionality**: Logs users out and redirects them to the Login page.
 
-- Download dependencies by running `npm install`
-- Start up the app using `npm start`
-</details>
+### 2. Products Page
 
-### Completion Instructions
+- **Data Fetching**:
+  - Sends a GET request to `productsApiUrl` with `jwt_token` for authentication, displaying a loader while data is retrieved.
+  - Shows an error view if the data request fails.
+- **Filters & Search**:
+  - Supports product filtering by search query, category, and rating.
+  - Multiple filters can be applied, and a "Clear Filters" button resets all filters to refresh the product list.
+  - Displays a loader during each filter operation.
 
-<details>
-<summary>Functionality to be added</summary>
-<br/>
+  ![Products Page](https://res.cloudinary.com/doov17zaw/image/upload/v1730109348/nxt%20Trends/Web_capture_28-10-2024_152037_nxttrends12.ccbp.tech_cmp6lr.jpg)
 
-The app must have the following functionalities
+### 3. Product Item Details Page
 
-- When an unauthenticated user tries to access the **Cart** Route, then the page should be navigated to **Login** Route
+- **Product Details**:
+  - Fetches and displays product details along with similar items for a selected product.
+  - Shows a loader while fetching data and an error view if the request fails.
 
-- Following are the features to be implemented
+  ![Product Item Details Page](https://res.cloudinary.com/doov17zaw/image/upload/v1730109618/nxt%20Trends/Web_capture_28-10-2024_152958_nxttrends12.ccbp.tech_g4nakd.jpg)
 
-  - Feature 1
+- **Quantity Controls**:
+  - Allows users to adjust product quantity with increment and decrement controls. Reducing quantity to zero removes the item from the cart.
+  - "Continue Shopping" in the error view redirects users to the Products page.
 
-    - When an authenticated user tries to add the same product multiple times
-      - The quantity of the product should be updated accordingly, and the count of the cart items in the header should be remained same
+### 4. Cart Management
 
-  - Feature 2
+- **Adding Items**: 
+  - Users can add items to the cart, updating quantities for existing items.
+  
+- **Cart Summary**:
+  - Displays total cost and item count in the cart.
 
-    - The total amount and number of items in the cart should be displayed in the **Cart** Route
+  ![Cart Management](https://res.cloudinary.com/doov17zaw/image/upload/v1730109795/nxt%20Trends/Web_capture_28-10-2024_153242_nxttrends12.ccbp.tech_fkucvy.jpg)
 
-  - Feature 3
+- **Cart Item Controls**:
+  - Supports item quantity adjustments and removal of individual items.
+  - "Remove All" button clears all items, showing an Empty Cart view when no items remain.
 
-    - In each cart item in the cart
-      - When the plus icon is clicked, then the quantity of the product should be incremented by one
-      - When the minus icon is clicked, then the quantity of the product should be decremented by one
-      - When the quantity of the product is one and the minus icon is clicked, then the respective product should be removed from the cart
-      - Based on the quantity of the product, the product price and the Cart Summary, i.e the total cost should be updated accordingly
+### Cart Context API
 
-  - Feature 4
+The Cart Context API manages cart state with the following methods:
 
-    - When an authenticated user clicks on the remove button, cart item should be removed from the cart list
+- **cartList**: Holds the current list of items in the cart.
+- **removeAllCartItems()**: Clears all items from the cart.
+- **addCartItem()**: Adds a new item to the cart.
+- **removeCartItem()**: Removes an individual item from the cart.
+- **incrementCartItemQuantity()**: Increases item quantity.
+- **decrementCartItemQuantity()**: Decreases item quantity.
 
-  - Feature 5
+## Technologies Used
 
-    - When an authenticated user clicks on the **Remove All** button, all the cart items should be removed from the cart and [Empty Cart View](https://assets.ccbp.in/frontend/content/react-js/nxt-trendz-cart-features-empty-cart-view.png) should be displayed
+- **React** for building UI components and managing state.
+- **Context API** for managing cart and authentication state.
+- **React Router** for client-side protected routing.
+- **API Integration** for managing product and authentication data.
 
-- The `CartContext` has an object as a value with the following properties
-  - `cartList` - this key stores the cart items
-  - `removeAllCartItems` - this method is used to remove all the cart items in the `cartList`
-  - `addCartItem` - this method adds the cart item to the `cartList`
-  - `removeCartItem` - this method removes the cart item from the `cartList`
-  - `incrementCartItemQuantity` - this method increases the quantity of a product in the `cartList`
-  - `decrementCartItemQuantity` - this method decreases the quantity of a product in the `cartList`
+## Future Enhancements
 
-</details>
+Future improvements could include wishlist management, enhanced error handling, and personalized product recommendations for an even more robust shopping experience.
 
-<details>
-<summary>Components Structure</summary>
-
-<br/>
-<div style="text-align: center;">
-    <img src="https://assets.ccbp.in/frontend/content/react-js/nxt-trendz-cart-features-component-structure-breakdown.png" alt="component structure breakdown" style="max-width:100%;box-shadow:0 2.8px 2.2px rgba(0, 0, 0, 0.12)">
-</div>
-<br/>
-
-</details>
-
-<details>
-<summary>Implementation Files</summary>
-<br/>
-
-Use these files to complete the implementation:
-
-- `src/App.js`
-- `src/components/Cart/index.js`
-- `src/components/Cart/index.css`
-- `src/components/CartItem/index.js`
-- `src/components/CartItem/index.css`
-- `src/components/CartSummary/index.js`
-- `src/components/CartSummary/index.css`
-</details>
-
-### Quick Tips
-
-<details>
-<summary>Click to view</summary>
-<br>
-
-- The `line-height` CSS property sets the height of a line box. It's commonly used to set the distance between lines of text
-
-  ```
-  line-height: 1.5;
-  ```
-
-    <br/>
-    <img src="https://assets.ccbp.in/frontend/react-js/line-height-img.png" alt="line height" style="width:90%; max-width: 600px;"/>
-
-- The array method `find()` returns the first item's value that satisfies the provided testing function. If no item is found, it returns `undefined`
-
-  **Syntax**: `arr.find(Testing Function)`
-
-</details>
-
-### Important Note
-
-<details>
-<summary>Click to view</summary>
-
-<br/>
-
-**The following instructions are required for the tests to pass**
-
-- `BsPlusSquare`, `BsDashSquare` icons from `react-icons` should be used for **plus** and **minus** buttons in cart item
-- The Cart Item should consist of two HTML button elements with data-testid attribute values as **plus** and **minus** respectively
-- `AiFillCloseCircle` icon from react-icons should be used for **remove** button in cartItem
-- The Cart Item should consist of an HTML button element with data-testid attribute values as **remove**
-- The product image in **Cart Item** Route should have the alt as `title` of the product
-
-- Prime User credentials
-
-  ```text
-   username: rahul
-   password: rahul@2021
-  ```
-
-- Non-Prime User credentials
-
-  ```text
-   username: raja
-   password: raja@2021
-  ```
-
-</details>
-
-### Resources
-
-<details>
-<summary>Colors</summary>
-
-<br/>
-
-<div style="background-color: #0b69ff; width: 150px; padding: 10px; color: white">Hex: #0b69ff</div>
-<div style="background-color: #171f46; width: 150px; padding: 10px; color: white">Hex: #171f46</div>
-<div style="background-color: #616e7c; width: 150px; padding: 10px; color: white">Hex: #616e7c</div>
-<div style="background-color: #ffffff; width: 150px; padding: 10px; color: black">Hex: #ffffff</div>
-
-</details>
-
-<details>
-<summary>Font-families</summary>
-
-- Roboto
-
-</details>
-
-> ### _Things to Keep in Mind_
->
-> - All components you implement should go in the `src/components` directory.
-> - Don't change the component folder names as those are the files being imported into the tests.
-> - **Do not remove the pre-filled code**
-> - Want to quickly review some of the concepts you’ve been learning? Take a look at the Cheat Sheets.
+---
